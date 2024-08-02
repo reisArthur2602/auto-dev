@@ -1,10 +1,10 @@
-import { Container, Form, NavBar } from '../../components';
+import { Container, Form, NavBar, UploadImage } from '../../components';
 
 export const New = () => {
   return (
     <Container classname='py-10 px-4'>
       <NavBar />
-     
+      <UploadImage />
       <Form>
         <Form.Label>
           Nome do carro
