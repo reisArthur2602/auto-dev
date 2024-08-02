@@ -43,7 +43,7 @@ export const UserProvider = ({ children }: { children: ReactNode }) => {
           name: user.displayName as string,
         })
       )
-      .catch(() => console.log('Usuário não encontrado'))
+      .catch(() => console.log('Email/Senha incorreto'))
 
       .finally(() => setLoading(false));
   };
