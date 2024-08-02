@@ -1,8 +1,15 @@
-import { createContext, ReactNode, useContext, useState } from 'react';
+import {
+  createContext,
+  ReactNode,
+  useContext,
+  useEffect,
+  useState,
+} from 'react';
 import { UserContextData } from './user';
 import { User, UserData } from '../../dtos/user';
 import {
   createUserWithEmailAndPassword,
+  onAuthStateChanged,
   signInWithEmailAndPassword,
   updateProfile,
 } from 'firebase/auth';
@@ -12,7 +19,7 @@ const UserContext = createContext({} as UserContextData);
 
 export const UserProvider = ({ children }: { children: ReactNode }) => {
   const [user, setUser] = useState<UserData | null>(null);
-  const [loading, setLoading] = useState<boolean>(false);
+  const [loading, setLoading] = useState<boolean>(true);
 
   const onRegister = async (data: User) => {
     await createUserWithEmailAndPassword(auth, data.email, data.password)
@@ -39,6 +46,19 @@ export const UserProvider = ({ children }: { children: ReactNode }) => {
 
       .finally(() => setLoading(false));
   };
+
+  useEffect(() => {
+    onAuthStateChanged(auth, (response) => {
+      if (response)
+        setUser({
+          uid: response.uid,
+          email: response.email as string,
+          name: response.displayName as string,
+        });
+
+      setLoading(false);
+    });
+  }, []);
 
   return (
     <UserContext.Provider
