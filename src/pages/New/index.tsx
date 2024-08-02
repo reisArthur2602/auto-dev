@@ -1,5 +1,10 @@
+import { Container, NavBar } from '../../components';
+
 export const New = () => {
   return (
-    <div>New</div>
-  )
-}
+    <Container>
+      <NavBar />
+      ...
+    </Container>
+  );
+};
