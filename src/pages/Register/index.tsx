@@ -5,8 +5,10 @@ import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import Schema from './Schema';
 import { User } from '../../dtos/user';
+import { useUser } from '../../context/User';
 
 export const Register = () => {
+  const { onRegister } = useUser();
   const {
     handleSubmit,
     register,
@@ -15,13 +17,9 @@ export const Register = () => {
     resolver: zodResolver(Schema),
   });
 
-  const onSubmit = (data: User) => {
-    console.log(data);
-  };
-
   return (
     <Container classname="flex flex-1 items-center justify-center">
-      <Form className="w-[31.25rem]" onSubmit={handleSubmit(onSubmit)}>
+      <Form className="w-[31.25rem]" onSubmit={handleSubmit(onRegister)}>
         <Form.Label>
           Nome
           <Form.Field
