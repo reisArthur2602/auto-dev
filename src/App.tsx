@@ -1,12 +1,18 @@
-import { Outlet } from 'react-router-dom';
+import { BrowserRouter } from 'react-router-dom';
 import { Header } from './components';
+import { UserProvider } from './context/User';
+import Routes from './routes';
 
 const App = () => {
   return (
-    <div className="w-full min-h-screen flex flex-col">
-      <Header />
-      <Outlet />
-    </div>
+    <BrowserRouter>
+      <UserProvider>
+        <div className="w-full min-h-screen flex flex-col">
+          <Header />
+          <Routes />
+        </div>
+      </UserProvider>
+    </BrowserRouter>
   );
 };
 

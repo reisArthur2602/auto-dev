@@ -1,14 +1,11 @@
-import { createBrowserRouter } from 'react-router-dom';
-import App from '../App';
-import { Home, Login, Register } from '../pages';
+import { useUser } from '../context/User';
+import AppRoutes from './app';
+import AuthRoutes from './auth';
 
-export default createBrowserRouter([
-  {
-    element: <App />,
-    children: [
-      { path: '/', element: <Login /> },
-      { path: '/register', element: <Register /> },
-      { path: 'home', element: <Home /> },
-    ],
-  },
-]);
+export default () => {
+  const { loading, isAuth } = useUser();
+
+  if (loading) return <div>Carregando...</div>;
+
+  return !loading && isAuth ? <AuthRoutes /> : <AppRoutes />;
+};
