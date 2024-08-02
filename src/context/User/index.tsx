@@ -1,7 +1,11 @@
 import { createContext, ReactNode, useContext, useState } from 'react';
 import { UserContextData } from './user';
 import { User, UserData } from '../../dtos/user';
-import { createUserWithEmailAndPassword, updateProfile } from 'firebase/auth';
+import {
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+  updateProfile,
+} from 'firebase/auth';
 import { auth } from '../../services';
 
 const UserContext = createContext({} as UserContextData);
@@ -22,8 +26,24 @@ export const UserProvider = ({ children }: { children: ReactNode }) => {
       .finally(() => setLoading(false));
   };
 
+  const onLogin = async (data: Omit<User, 'name'>) => {
+    await signInWithEmailAndPassword(auth, data.email, data.password)
+      .then(async ({ user }) =>
+        setUser({
+          uid: user.uid,
+          email: data.email,
+          name: user.displayName as string,
+        })
+      )
+      .catch(() => console.log('Usuário não encontrado'))
+
+      .finally(() => setLoading(false));
+  };
+
   return (
-    <UserContext.Provider value={{ user, loading, isAuth: !!user, onRegister }}>
+    <UserContext.Provider
+      value={{ user, loading, isAuth: !!user, onRegister, onLogin }}
+    >
       {children}
     </UserContext.Provider>
   );
