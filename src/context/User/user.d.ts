@@ -6,4 +6,5 @@ export type UserContextData = {
   isAuth: boolean;
   onRegister: (data: User) => void;
   onLogin: (data: Omit<User, 'name'>) => void;
+  Logout:() => Promise<void>
 };

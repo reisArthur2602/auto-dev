@@ -11,6 +11,7 @@ import {
   createUserWithEmailAndPassword,
   onAuthStateChanged,
   signInWithEmailAndPassword,
+  signOut,
   updateProfile,
 } from 'firebase/auth';
 import { auth } from '../../services';
@@ -47,6 +48,10 @@ export const UserProvider = ({ children }: { children: ReactNode }) => {
       .finally(() => setLoading(false));
   };
 
+  const Logout = async () => {
+    await signOut(auth).then(() => setUser(null));
+  };
+
   useEffect(() => {
     onAuthStateChanged(auth, (response) => {
       if (response)
@@ -62,7 +67,7 @@ export const UserProvider = ({ children }: { children: ReactNode }) => {
 
   return (
     <UserContext.Provider
-      value={{ user, loading, isAuth: !!user, onRegister, onLogin }}
+      value={{ user, loading, isAuth: !!user, onRegister, onLogin, Logout }}
     >
       {children}
     </UserContext.Provider>

@@ -1,8 +1,8 @@
 import { Link } from 'react-router-dom';
-
+import { useUser } from '../../context/User';
 
 export const NavBar = () => {
-
+  const { Logout } = useUser();
 
   return (
     <nav className="w-full flex justify-between items-center  rounded-lg px-6 py-3 my-10 bg-red-600">
@@ -14,7 +14,7 @@ export const NavBar = () => {
           Cadastrar Carro
         </Link>
       </div>
-      <button className="font-bold text-neutral-50">
+      <button className="font-bold text-neutral-50" onClick={Logout}>
         Sair
       </button>
     </nav>
