@@ -1,5 +1,11 @@
 import { twMerge } from 'tailwind-merge';
-import { FormField, FormLabel, FormProps, FormSubmit } from './form';
+import {
+  FormField,
+  FormLabel,
+  FormProps,
+  FormSubmit,
+  FormTextarea,
+} from './form';
 import { forwardRef } from 'react';
 
 const Form = ({ children, className, ...props }: FormProps) => {
@@ -28,6 +34,18 @@ export const Field = forwardRef<HTMLInputElement, FormField>(
   }
 );
 
+export const TextArea = forwardRef<HTMLTextAreaElement, FormTextarea>(
+  ({ ...props }: FormTextarea, ref) => {
+    return (
+      <textarea
+        ref={ref}
+        {...props}
+        className="w-full p-4 rounded-[0.25rem] bg-neutral-100 text-neutral-400 font-normal h-[7.5rem] resize-none"
+      />
+    );
+  }
+);
+
 export const Label = ({ children, ...props }: FormLabel) => {
   return (
     <label
@@ -51,6 +69,7 @@ export const Submit = ({ children, ...props }: FormSubmit) => {
 };
 
 Form.Field = Field;
+Form.Textarea = TextArea;
 Form.Label = Label;
 Form.Submit = Submit;
 

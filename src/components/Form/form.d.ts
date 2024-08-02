@@ -8,3 +8,6 @@ export interface FormLabel
 
 export interface FormSubmit
   extends React.ButtonHTMLAttributes<HTMLButtonElement> {}
+
+export interface FormTextarea
+  extends React.TextareaHTMLAttributes<HTMLTextAreaElement> {}
