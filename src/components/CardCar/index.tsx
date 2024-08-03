@@ -1,13 +1,16 @@
 import { MapPin, Trash } from 'lucide-react';
-import { CardCardData } from './card-car';
+import { CardCardProps } from './card-car';
 import { useLocation } from 'react-router-dom';
 
-export const CardCar = ({ ...car }: CardCardData) => {
+export const CardCar = ({ car, onDelete }: CardCardProps) => {
   const { pathname } = useLocation();
   return (
     <li className="bg-white overflow-hidden rounded-lg min-w-[15.125rem] cursor-pointer relative">
-      {pathname === '/dashboard' && (
-        <button className="bg-white rounded-full flex items-center justify-center h-10 w-10 absolute top-3 right-3">
+      {pathname === '/dashboard' && onDelete && (
+        <button
+          onClick={() => onDelete(car)}
+          className="bg-white rounded-full flex items-center justify-center h-10 w-10 absolute top-3 right-3"
+        >
           <Trash />
         </button>
       )}

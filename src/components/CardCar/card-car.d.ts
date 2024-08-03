@@ -9,3 +9,15 @@ export type CardCardData = {
   km: string;
   images: CarImageProps[];
 };
+
+
+export type CarImageProps = {
+  uid: string;
+  name: string;
+  url: string;
+}
+
+export type CardCardProps = {
+  car: CardCardData;
+  onDelete?: (car: CardCardData) => Promise<void>
+};
