@@ -1,8 +1,10 @@
 import { zodResolver } from '@hookform/resolvers/zod';
-import { Container, Form, NavBar, UploadImage } from '../../components';
+import { Container, Form, NavBar, Upload } from '../../components';
 import Schema from './Schema';
 import { useForm } from 'react-hook-form';
 import { Car } from '../../dtos/car';
+import { useState } from 'react';
+import { UploadImageData } from '../../components/Upload/upload';
 
 export const New = () => {
   const {
@@ -14,6 +16,8 @@ export const New = () => {
     resolver: zodResolver(Schema),
   });
 
+  const [uploadFiles, setUploadFiles] = useState<UploadImageData[]>([]);
+
   const onCreate = async (data: Car) => {
     console.log(data);
   };
@@ -21,7 +25,7 @@ export const New = () => {
   return (
     <Container classname="py-10 px-4">
       <NavBar />
-      <UploadImage />
+      <Upload onChange={setUploadFiles} value={uploadFiles} />
 
       <Form onSubmit={handleSubmit(onCreate)}>
         <Form.Label>
