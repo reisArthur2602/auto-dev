@@ -1,16 +1,10 @@
-export type CarsData = {
+export interface CarsData extends Car {
   id: string;
-  name: string;
-  year: string;
   uid: string;
-  price: string;
-  city: string;
-  km: string;
   images: CarImageProps[];
   owner: string;
   created: Date;
-  description: string;
-};
+}
 
 export type CarImageProps = {
   name: string;

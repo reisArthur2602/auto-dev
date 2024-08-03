@@ -4,3 +4,4 @@ export * from './NavBar';
 export * from './Form';
 export * from './Upload';
 export * from './SearchBar';
+export * from './CardCar';
