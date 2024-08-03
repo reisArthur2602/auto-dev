@@ -1,11 +1,15 @@
 import { MapPin, Trash } from 'lucide-react';
 import { CardCardProps } from './card-car';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 export const CardCar = ({ car, onDelete }: CardCardProps) => {
   const { pathname } = useLocation();
+  const navigate = useNavigate();
   return (
-    <li className="bg-white overflow-hidden rounded-lg min-w-[15.125rem] cursor-pointer relative">
+    <li
+      className="bg-white overflow-hidden rounded-lg min-w-[15.125rem] cursor-pointer relative"
+      onClick={() => navigate(`/details/${car.id}`)}
+    >
       {pathname === '/dashboard' && onDelete && (
         <button
           onClick={() => onDelete(car)}
