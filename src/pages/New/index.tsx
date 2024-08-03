@@ -5,8 +5,12 @@ import { useForm } from 'react-hook-form';
 import { Car } from '../../dtos/car';
 import { useState } from 'react';
 import { UploadImageData } from '../../components/Upload/upload';
+import { useUser } from '../../context/User';
+import { addDoc, collection } from 'firebase/firestore';
+import { db } from '../../services';
 
 export const New = () => {
+  const { user } = useUser();
   const {
     register,
     handleSubmit,
@@ -19,7 +23,37 @@ export const New = () => {
   const [uploadFiles, setUploadFiles] = useState<UploadImageData[]>([]);
 
   const onCreate = async (data: Car) => {
-    console.log(data);
+    if (uploadFiles.length === 0)
+      return alert('Envie alguma imagem deste carro!');
+
+    const carImages = uploadFiles.map((car) => {
+      return {
+        uid: car.uid,
+        name: car.name,
+        url: car.url,
+      };
+    });
+
+    addDoc(collection(db, 'cars'), {
+      name: data.name,
+      model: data.model,
+      phone: data.phone,
+      city: data.city,
+      year: data.year,
+      km: data.km,
+      price: data.price,
+      description: data.description,
+      created: new Date(),
+      owner: user?.name,
+      uid: user?.uid,
+      images: carImages,
+    })
+      .then(() => {
+        reset();
+        setUploadFiles([]);
+        console.log('Cadastrado com sucesso!');
+      })
+      .catch((error) => console.log(error));
   };
 
   return (
