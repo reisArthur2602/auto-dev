@@ -32,7 +32,7 @@ export const CardCar = ({ car, onDelete }: CardCardProps) => {
         <div className="p-4 flex flex-col justify-between min-h-[10.625rem]">
           <div>
             <b className="font-bold text-neutral-950 uppercase">{car.name}</b>
-            <p className="text-neutral-400 font-normal">{car.model}</p>
+            <p className="text-neutral-400 text-sm font-normal">{car.model}</p>
           </div>
 
           <div>
@@ -41,8 +41,8 @@ export const CardCar = ({ car, onDelete }: CardCardProps) => {
             </b>
 
             <div className="flex items-center justify-between">
-              <p className="text-neutral-400 font-normal">Ano {car.year}</p>
-              <p className="text-neutral-400 font-normal">{car.km} KM</p>
+              <p className="text-neutral-400 font-normal text-sm">Ano {car.year}</p>
+              <p className="text-neutral-400 font-normal text-sm">{car.km} KM</p>
             </div>
           </div>
         </div>

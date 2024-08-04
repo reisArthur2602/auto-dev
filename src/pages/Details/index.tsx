@@ -3,7 +3,7 @@ import { useParams } from 'react-router-dom';
 import { CarsData } from '../../dtos/car';
 import { doc, getDoc } from 'firebase/firestore';
 import { db } from '../../services';
-import { CarCarousel, Container } from '../../components';
+import { CarCarousel, Container, NavBar } from '../../components';
 
 export const Details = () => {
   const { id } = useParams();
@@ -49,11 +49,13 @@ export const Details = () => {
       window.addEventListener('resize', handleResize);
     };
   }, []);
-  console.log(car);
+
   return (
-    <Container classname="py-10 px-4 flex flex-col gap-4">
+    <Container classname="py-10 px-4">
+      <NavBar />
+
       {car && (
-        <>
+        <main className="flex flex-col gap-4">
           <CarCarousel car={car.images} value={sliderPerView} />
 
           <section className="w-full rounded-lg bg-white flex flex-col">
@@ -93,7 +95,7 @@ export const Details = () => {
               <b className="text-neutral-950">{car.description}</b>
             </div>
           </section>
-        </>
+        </main>
       )}
     </Container>
   );

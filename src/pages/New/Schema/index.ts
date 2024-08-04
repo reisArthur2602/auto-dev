@@ -1,13 +1,7 @@
 import { z } from 'zod';
 
 export default z.object({
-  name: z
-    .string()
-    .min(1, 'O campo nome é obrigatório')
-    .refine(
-      (value) => /^[A-Za-z\s]{2,}$/.test(value),
-      'O nome deve conter apenas letras e espaços'
-    ),
+  name: z.string().min(1, 'O campo nome é obrigatório'),
 
   model: z.string().min(1, 'O modelo do carro é obrigatório'),
   year: z.string().min(1, 'O ano é obrigatório'),
@@ -18,7 +12,7 @@ export default z.object({
     .min(1, 'A cidade é obrigatória')
     .refine(
       (value) => /^[A-Za-z\s]{2,}$/.test(value),
-      'A cidade deve conter apenas letras e espaços'
+      'A cidade deve conter apenas letras e espaços, sem acentos'
     ),
   phone: z
     .string()
