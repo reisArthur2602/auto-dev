@@ -5,4 +5,5 @@ export * from './Form';
 export * from './Upload';
 export * from './SearchBar';
 export * from './CarCarousel';
+export * from './Loading';
 export * from './CardCar';
