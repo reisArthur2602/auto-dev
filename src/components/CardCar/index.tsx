@@ -8,7 +8,9 @@ export const CardCar = ({ car, onDelete }: CardCardProps) => {
   return (
     <li
       className="bg-white overflow-hidden rounded-lg min-w-[15.125rem] cursor-pointer relative"
-      onClick={() => navigate(`/details/${car.id}`)}
+      onClick={() => {
+        pathname !=='/dashboard' && navigate(`/details/${car.id}`);
+      }}
     >
       {pathname === '/dashboard' && onDelete && (
         <button
