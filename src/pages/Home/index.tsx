@@ -1,37 +1,43 @@
 import { useEffect, useState } from 'react';
-import { CardCar, Container, SearchBar } from '../../components';
+import { CardCar, Container, Loading, SearchBar } from '../../components';
 import { collection, getDocs, orderBy, query } from 'firebase/firestore';
 import { db } from '../../services';
 import { CardCardData } from '../../components/CardCar/card-car';
 
 export const Home = () => {
   const [cars, setCars] = useState<CardCardData[]>([]);
+  const [loading, setLoading] = useState<boolean>(true);
 
   useEffect(() => {
-    (() => {
-      const carsRef = collection(db, 'cars');
-      const queryRef = query(carsRef, orderBy('created', 'desc'));
-
-      getDocs(queryRef).then((snapshot) => {
-        let CARS = [] as CardCardData[];
-
-        snapshot.forEach((doc) =>
-          CARS.push({
-            id: doc.id,
-            name: doc.data().name,
-            year: doc.data().year,
-            model: doc.data().model,
-            km: doc.data().km,
-            city: doc.data().city,
-            price: doc.data().price,
-            images: doc.data().images,
-            uid: doc.data().uid,
-          })
-        );
-        setCars(CARS);
-      });
-    })();
+    getCars();
   }, []);
+
+  const getCars = async () => {
+    const carsRef = collection(db, 'cars');
+    const queryRef = query(carsRef, orderBy('created', 'desc'));
+
+    await getDocs(queryRef).then((snapshot) => {
+      let CARS = [] as CardCardData[];
+
+      snapshot.forEach((doc) =>
+        CARS.push({
+          id: doc.id,
+          name: doc.data().name,
+          year: doc.data().year,
+          model: doc.data().model,
+          km: doc.data().km,
+          city: doc.data().city,
+          price: doc.data().price,
+          images: doc.data().images,
+          uid: doc.data().uid,
+        })
+      );
+
+      setCars(CARS);
+      setLoading(false);
+    });
+  };
+  if (loading) return <Loading />;
   return (
     <Container classname="py-10 px-4 flex items-center flex-col gap-10">
       <SearchBar />

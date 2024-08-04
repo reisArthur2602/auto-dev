@@ -4,6 +4,7 @@ import { CarsData } from '../../dtos/car';
 import { doc, getDoc } from 'firebase/firestore';
 import { db } from '../../services';
 import { CarCarousel, Container, NavBar } from '../../components';
+import { PhoneIcon } from 'lucide-react';
 
 export const Details = () => {
   const { id } = useParams();
@@ -90,9 +91,16 @@ export const Details = () => {
               </div>
             </div>
             {/* about */}
-            <div className="p-9">
+            <div className="p-9 flex flex-col gap-4">
               <p className="text-neutral-400 font-semibold">Sobre o carro</p>
-              <b className="text-neutral-950">{car.description}</b>
+              <b className="text-neutral-950 font-normal">{car.description}</b>
+              <a
+                href={`https://api.whatsapp.com/send?phone=${car.phone}&text=Olá, estou interessado no seu ${car.name} do site AutoDev`}
+                target="_blank"
+                className="w-full flex justify-center items-center gap-4 rounded-lg px-8 py-4 bg-green-600 font-semibold text-neutral-50"
+              >
+                <PhoneIcon /> Converse com o vendedor
+              </a>
             </div>
           </section>
         </main>
