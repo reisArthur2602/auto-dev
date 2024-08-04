@@ -28,7 +28,7 @@ export const Field = forwardRef<HTMLInputElement, FormField>(
       <input
         ref={ref}
         {...props}
-        className="w-full p-4 rounded-[0.25rem] bg-neutral-100 text-neutral-400 font-normal"
+        className="w-full p-4 rounded-[0.25rem] bg-neutral-100 text-neutral-950 font-normal placeholder:text-neutral-400"
       />
     );
   }
