@@ -42,7 +42,7 @@ export const Home = () => {
 
       <ul className="w-full grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-4">
         {cars.map((c) => (
-          <CardCar key={c.id} {...c} />
+          <CardCar key={c.id} car={c} />
         ))}
       </ul>
     </Container>

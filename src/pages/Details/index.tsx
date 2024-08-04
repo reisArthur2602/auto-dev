@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom';
 import { CarsData } from '../../dtos/car';
 import { doc, getDoc } from 'firebase/firestore';
 import { db } from '../../services';
+import { Container } from '../../components';
 
 export const Details = () => {
   const { id } = useParams();
@@ -15,7 +16,7 @@ export const Details = () => {
 
       const docRef = doc(db, 'cars', id);
 
-      getDoc(docRef).then((snapshot) => {
+      await getDoc(docRef).then((snapshot) => {
         setCar({
           id: snapshot.id,
           name: snapshot.data()?.name,
@@ -35,5 +36,45 @@ export const Details = () => {
     })();
   }, [id]);
 
-  return <div>Details</div>;
+  return (
+    <Container classname="py-10 px-4">
+      <section className="w-full rounded-lg bg-white flex flex-col">
+        <div className="px-[3.75rem] py-[2.5rem] flex flex-col gap-4 border-b-2 border-solid border-neutral-100">
+          {/* title & price */}
+          <div className="w-full flex justify-between">
+            <div>
+              <b className="text-[2.5rem] font-extrabold text-neutral-950 uppercase">
+                {car?.name}
+              </b>
+              <p className="text-xl text-neutral-400">{car?.model}F</p>
+            </div>
+            <b className="text-[2.5rem] font-extrabold text-neutral-950">
+              R${car?.price}
+            </b>
+          </div>
+
+          {/* infos */}
+          <div>
+            <p className="text-neutral-400 font-semibold">Cidade</p>
+            <b className="text-neutral-950 font-extrabold">{car?.city}</b>
+          </div>
+          <div>
+            <p className="text-neutral-400 font-semibold">Ano</p>
+            <b className="text-neutral-950 font-extrabold">{car?.year}</b>
+          </div>
+          <div>
+            <p className="text-neutral-400 font-semibold">
+              Contato do vendedor
+            </p>
+            <b className="text-neutral-950 font-extrabold">{car?.phone}</b>
+          </div>
+        </div>
+        {/* about */}
+        <div className="px-[3.75rem] py-[2.5rem]">
+          <p className="text-neutral-400 font-semibold">Sobre o carro</p>
+          <b className="text-neutral-950 font-extrabold">{car?.description}</b>
+        </div>
+      </section>
+    </Container>
+  );
 };
