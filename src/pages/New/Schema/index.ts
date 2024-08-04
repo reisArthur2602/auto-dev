@@ -1,7 +1,7 @@
 import { z } from 'zod';
 
 export default z.object({
-  name: z.string().min(1, 'O campo nome é obrigatório'),
+  name: z.string().min(1, 'O campo nome é obrigatório').trim().toUpperCase(),
 
   model: z.string().min(1, 'O modelo do carro é obrigatório'),
   year: z.string().min(1, 'O ano é obrigatório'),
