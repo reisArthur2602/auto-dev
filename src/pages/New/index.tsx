@@ -68,7 +68,11 @@ export const New = () => {
             placeholder="Ex: Renault Clio"
             type="text"
             {...register('name')}
+            helperText={errors.name?.message}
           />
+          {errors && (
+            <p className="text-xs text-red-500">{errors.name?.message}</p>
+          )}
         </Form.Label>
 
         <Form.Label>
@@ -77,7 +81,11 @@ export const New = () => {
             placeholder="Ex: 1.4 MPFI MAXX 8V FLEX 4P MANUAL"
             type="text"
             {...register('model')}
+            helperText={errors.model?.message}
           />
+          {errors && (
+            <p className="text-xs text-red-500">{errors.model?.message}</p>
+          )}
         </Form.Label>
 
         <div className="flex items-center justify-center gap-4">
@@ -87,7 +95,11 @@ export const New = () => {
               placeholder="Ex: 2022/2024"
               type="text"
               {...register('year')}
+              helperText={errors.year?.message}
             />
+            {errors && (
+              <p className="text-xs text-red-500">{errors.year?.message}</p>
+            )}
           </Form.Label>
           <Form.Label>
             Km
@@ -95,7 +107,11 @@ export const New = () => {
               placeholder="Ex: 520000"
               type="text"
               {...register('km')}
+              helperText={errors.km?.message}
             />
+            {errors && (
+              <p className="text-xs text-red-500">{errors.km?.message}</p>
+            )}
           </Form.Label>
         </div>
 
@@ -106,7 +122,11 @@ export const New = () => {
               placeholder="Ex: 021995461569"
               type="text"
               {...register('phone')}
+              helperText={errors.phone?.message}
             />
+            {errors && (
+              <p className="text-xs text-red-500">{errors.phone?.message}</p>
+            )}
           </Form.Label>
           <Form.Label>
             Preço
@@ -114,7 +134,11 @@ export const New = () => {
               placeholder="Ex:1240000"
               type="text"
               {...register('price')}
+              helperText={errors.price?.message}
             />
+            {errors && (
+              <p className="text-xs text-red-500">{errors.price?.message}</p>
+            )}
           </Form.Label>
         </div>
         <Form.Label>
@@ -123,15 +147,25 @@ export const New = () => {
             placeholder="Ex:Rio de Janeiro"
             type="text"
             {...register('city')}
+            helperText={errors.city?.message}
           />
+          {errors && (
+            <p className="text-xs text-red-500">{errors.city?.message}</p>
+          )}
         </Form.Label>
 
         <Form.Label>
           Sobre o carro
           <Form.Textarea
-            placeholder="Ex:1240000"
+            placeholder="Descrição do carro..."
             {...register('description')}
+            helperText={errors.description?.message}
           />
+          {errors && (
+            <p className="text-xs text-red-500">
+              {errors.description?.message}
+            </p>
+          )}
         </Form.Label>
 
         <Form.Submit>Cadastrar</Form.Submit>

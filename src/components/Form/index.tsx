@@ -23,24 +23,30 @@ const Form = ({ children, className, ...props }: FormProps) => {
 };
 
 export const Field = forwardRef<HTMLInputElement, FormField>(
-  ({ ...props }: FormField, ref) => {
+  ({ helperText, ...props }: FormField, ref) => {
     return (
       <input
         ref={ref}
         {...props}
-        className="w-full p-4 rounded-[0.25rem] bg-neutral-100 text-neutral-950 font-normal placeholder:text-neutral-400"
+        className={twMerge(
+          'w-full p-4 rounded-[0.25rem] bg-neutral-100 text-neutral-950 font-normal placeholder:text-neutral-400',
+          helperText && 'border border-solid border-red-400 placeholder:text-red-600'
+        )}
       />
     );
   }
 );
 
 export const TextArea = forwardRef<HTMLTextAreaElement, FormTextarea>(
-  ({ ...props }: FormTextarea, ref) => {
+  ({ helperText, ...props }: FormTextarea, ref) => {
     return (
       <textarea
         ref={ref}
         {...props}
-        className="w-full p-4 rounded-[0.25rem] bg-neutral-100 text-neutral-400 font-normal h-[7.5rem] resize-none"
+        className={twMerge(
+          "w-full p-4 rounded-[0.25rem] bg-neutral-100 text-neutral-950 font-normal placeholder:text-neutral-400 h-[7.5rem] resize-none",
+          helperText && 'border border-solid border-red-400 placeholder:text-red-600'
+        )}
       />
     );
   }
