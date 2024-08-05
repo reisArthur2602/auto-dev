@@ -53,6 +53,7 @@ export const Details = () => {
     };
   }, []);
 
+
   if (loading) return <Loading />;
   return (
     <Container classname="py-10 px-4">
@@ -60,7 +61,10 @@ export const Details = () => {
 
       {car && (
         <main className="flex flex-col gap-4">
-          <CarCarousel car={car.images} value={sliderPerView} />
+          <CarCarousel
+            car={car.images}
+            value={car.images.length === 1 ? 1 : sliderPerView}
+          />
 
           <section className="w-full rounded-lg bg-white flex flex-col">
             <div className="p-9 flex flex-col gap-4 border-b-2 border-solid border-neutral-100">

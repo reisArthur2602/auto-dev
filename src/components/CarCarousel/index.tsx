@@ -20,7 +20,7 @@ export const CarCarousel = ({ car, value }: CarCarouselProps) => {
         <SwiperSlide key={i.url}>
           <img
             src={i.url}
-            className="w-full h-[17.5rem] object-cover"
+            className="w-full h-[22.5rem] object-cover"
             alt="Car Image"
           />
         </SwiperSlide>
