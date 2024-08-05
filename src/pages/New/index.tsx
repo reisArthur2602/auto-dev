@@ -13,6 +13,7 @@ import {
   normalizePriceOrKM,
   normalizeYear,
 } from '../../utils/masks';
+import { toast } from 'react-toastify';
 
 export const New = () => {
   const { user } = useUser();
@@ -51,7 +52,6 @@ export const New = () => {
   const [uploadFiles, setUploadFiles] = useState<UploadImageData[]>([]);
 
   const onCreate = async (data: Car) => {
-    console.log(data);
     if (uploadFiles.length === 0)
       return alert('Envie alguma imagem deste carro!');
 
@@ -63,26 +63,19 @@ export const New = () => {
       };
     });
 
-    addDoc(collection(db, 'cars'), {
-      name: data.name,
-      model: data.model,
-      phone: data.phone,
-      city: data.city,
-      year: data.year,
-      km: data.km,
-      price: data.price,
-      description: data.description,
+   await addDoc(collection(db, 'cars'), {
+      ...data,
       created: new Date(),
       owner: user?.name,
       uid: user?.uid,
       images: carImages,
     })
       .then(() => {
-        reset();
         setUploadFiles([]);
-        console.log('Cadastrado com sucesso!');
+        toast.success('Anúncio cadastrado com sucesso!');
+        reset();
       })
-      .catch((error) => console.log(error));
+      .catch((error) => toast.error(error));
   };
 
   return (

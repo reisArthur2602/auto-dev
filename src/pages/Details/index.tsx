@@ -3,7 +3,7 @@ import { useParams } from 'react-router-dom';
 import { CarsData } from '../../dtos/car';
 import { doc, getDoc } from 'firebase/firestore';
 import { db } from '../../services';
-import { CarCarousel, Container, NavBar } from '../../components';
+import { CarCarousel, Container, Loading, NavBar } from '../../components';
 import { PhoneIcon } from 'lucide-react';
 
 export const Details = () => {
@@ -11,6 +11,7 @@ export const Details = () => {
 
   const [car, setCar] = useState<CarsData>();
   const [sliderPerView, setSlidesPerView] = useState<number>(2);
+  const [loading, setLoading] = useState<boolean>(true);
 
   useEffect(() => {
     (async () => {
@@ -34,6 +35,7 @@ export const Details = () => {
           owner: snapshot.data()?.owner,
           images: snapshot.data()?.images,
         });
+        setLoading(false);
       });
     })();
   }, [id]);
@@ -51,6 +53,7 @@ export const Details = () => {
     };
   }, []);
 
+  if (loading) return <Loading />;
   return (
     <Container classname="py-10 px-4">
       <NavBar />

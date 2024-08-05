@@ -9,7 +9,11 @@ export const NavBar = () => {
     <nav className="w-full flex justify-between items-center rounded-lg px-6 py-3 mb-10 bg-red-600">
       <div className="flex items-center gap-4">
         {LINKS.map((l) => (
-          <Link to={l.path} className="font-semibold text-neutral-50">
+          <Link
+            to={l.path}
+            key={l.title}
+            className="font-semibold text-neutral-50"
+          >
             {l.title}
           </Link>
         ))}

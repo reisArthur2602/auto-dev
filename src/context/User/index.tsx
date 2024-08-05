@@ -15,6 +15,7 @@ import {
   updateProfile,
 } from 'firebase/auth';
 import { auth } from '../../services';
+import { toast } from 'react-toastify';
 
 const UserContext = createContext({} as UserContextData);
 
@@ -27,23 +28,25 @@ export const UserProvider = ({ children }: { children: ReactNode }) => {
       .then(async ({ user }) => {
         await updateProfile(user, { displayName: data.name });
         setUser({ uid: user.uid, email: data.email, name: data.name });
+        toast.success('Cadastro realizado com sucesso! Seja Bem-vindo');
       })
       .catch(() =>
-        console.log('O email informado já está associado a uma conta')
+        toast.error('O email informado já está associado a uma conta')
       )
       .finally(() => setLoading(false));
   };
 
   const onLogin = async (data: Omit<User, 'name'>) => {
     await signInWithEmailAndPassword(auth, data.email, data.password)
-      .then(async ({ user }) =>
+      .then(async ({ user }) => {
         setUser({
           uid: user.uid,
           email: data.email,
           name: user.displayName as string,
-        })
-      )
-      .catch(() => console.log('Email/Senha incorreto'))
+        });
+        toast.success('Bem-vindo de volta! Login realizado com sucesso.');
+      })
+      .catch(() => toast.error('Email/Senha incorreto'))
 
       .finally(() => setLoading(false));
   };
