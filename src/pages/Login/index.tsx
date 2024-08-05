@@ -26,7 +26,11 @@ export const Login = () => {
             placeholder="email@email.com"
             type="text"
             {...register('email')}
+            helperText={errors.email?.message}
           />
+          {errors && (
+            <p className="text-xs text-red-500">{errors.email?.message}</p>
+          )}
         </Form.Label>
 
         <Form.Label>
@@ -35,7 +39,11 @@ export const Login = () => {
             placeholder="******"
             type="password"
             {...register('password')}
+            helperText={errors.password?.message}
           />
+          {errors && (
+            <p className="text-xs text-red-500">{errors.password?.message}</p>
+          )}
         </Form.Label>
 
         <Form.Submit>Entrar</Form.Submit>

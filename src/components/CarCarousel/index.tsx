@@ -1,6 +1,5 @@
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Pagination, Navigation } from 'swiper/modules';
-import { CarImageProps } from '../../dtos/car';
 
 import 'swiper/css';
 import 'swiper/css/navigation';
@@ -8,15 +7,14 @@ import 'swiper/css/pagination';
 import 'swiper/css/scrollbar';
 import { CarCarouselProps } from './car-carousel';
 
-
-export const CarCarousel = ({ car , value}: CarCarouselProps) => {
+export const CarCarousel = ({ car, value }: CarCarouselProps) => {
   return (
     <Swiper
       slidesPerView={value}
       pagination={{ clickable: true }}
-      modules={[Pagination, Navigation]} 
+      modules={[Pagination, Navigation]}
       navigation
-      className='w-full rounded-lg'
+      className="w-full rounded-lg"
     >
       {car.map((i) => (
         <SwiperSlide key={i.url}>
@@ -30,5 +28,3 @@ export const CarCarousel = ({ car , value}: CarCarouselProps) => {
     </Swiper>
   );
 };
-
-

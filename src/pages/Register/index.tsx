@@ -26,7 +26,11 @@ export const Register = () => {
             placeholder="Nome Completo"
             type="text"
             {...register('name')}
+            helperText={errors.name?.message}
           />
+          {errors && (
+            <p className="text-xs text-red-500">{errors.name?.message}</p>
+          )}
         </Form.Label>
 
         <Form.Label>
@@ -35,7 +39,11 @@ export const Register = () => {
             placeholder="email@email.com"
             type="text"
             {...register('email')}
+            helperText={errors.email?.message}
           />
+          {errors && (
+            <p className="text-xs text-red-500">{errors.email?.message}</p>
+          )}
         </Form.Label>
 
         <Form.Label>
@@ -44,7 +52,11 @@ export const Register = () => {
             placeholder="******"
             type="password"
             {...register('password')}
+            helperText={errors.password?.message}
           />
+          {errors && (
+            <p className="text-xs text-red-500">{errors.password?.message}</p>
+          )}
         </Form.Label>
 
         <Form.Submit>Cadastrar</Form.Submit>
