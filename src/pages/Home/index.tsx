@@ -1,5 +1,11 @@
 import { useEffect, useState } from 'react';
-import { CardCar, Container, Loading, SearchBar } from '../../components';
+import {
+  CardCar,
+  Container,
+  Empty,
+  Loading,
+  SearchBar,
+} from '../../components';
 import { collection, getDocs, orderBy, query, where } from 'firebase/firestore';
 import { db } from '../../services';
 import { CardCardData } from '../../components/CardCar/card-car';
@@ -44,7 +50,7 @@ export const Home = () => {
     if (search === '') return getCars();
 
     setCars([]);
-    
+
     const q = query(
       collection(db, 'cars'),
       where('name', '>=', search.toUpperCase()),
@@ -81,15 +87,22 @@ export const Home = () => {
         value={search}
         onClick={handleSearchCar}
       />
-      <h1 className="text-center font-bold text-neutral-950 text-[2rem]">
-        Quer comprar ou vender um carro sem sair de casa?
-      </h1>
 
-      <ul className="w-full grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-4">
-        {cars.map((c) => (
-          <CardCar key={c.id} car={c} />
-        ))}
-      </ul>
+      {cars.length === 0 ? (
+        <Empty />
+      ) : (
+        <>
+          <h1 className="text-center font-bold text-neutral-950 text-[2rem]">
+            Quer comprar ou vender um carro sem sair de casa?
+          </h1>
+
+          <ul className="w-full grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-4">
+            {cars.map((c) => (
+              <CardCar key={c.id} car={c} />
+            ))}
+          </ul>
+        </>
+      )}
     </Container>
   );
 };

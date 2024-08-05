@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { CardCar, Container, NavBar } from '../../components';
+import { CardCar, Container, Empty, NavBar } from '../../components';
 import { CardCardData } from '../../components/CardCar/card-car';
 import {
   collection,
@@ -57,11 +57,15 @@ export const Dashboard = () => {
   return (
     <Container classname="py-10 px-4">
       <NavBar />
-      <ul className="w-full grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-4">
-        {cars.map((c) => (
-          <CardCar key={c.id} car={c} onDelete={handleDelete} />
-        ))}
-      </ul>
+      {cars.length === 0 ? (
+        <Empty />
+      ) : (
+        <ul className="w-full grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-4">
+          {cars.map((c) => (
+            <CardCar key={c.id} car={c} onDelete={handleDelete} />
+          ))}
+        </ul>
+      )}
     </Container>
   );
 };

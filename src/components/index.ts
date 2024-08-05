@@ -7,3 +7,4 @@ export * from './SearchBar';
 export * from './CarCarousel';
 export * from './Loading';
 export * from './CardCar';
+export * from './Empty';
