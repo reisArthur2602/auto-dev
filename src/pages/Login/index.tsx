@@ -18,7 +18,7 @@ export const Login = () => {
   });
 
   return (
-    <Container classname="flex flex-1 items-center justify-center">
+    <Container classname="flex flex-1 items-center justify-center px-3">
       <Form className="w-[31.25rem]" onSubmit={handleSubmit(onLogin)}>
         <Form.Label>
           Email

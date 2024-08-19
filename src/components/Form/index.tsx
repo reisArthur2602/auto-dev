@@ -29,7 +29,7 @@ export const Field = forwardRef<HTMLInputElement, FormField>(
         ref={ref}
         {...props}
         className={twMerge(
-          'w-full p-4 rounded-[0.25rem] bg-neutral-100 text-neutral-950 font-normal placeholder:text-neutral-400',
+          'w-full p-4 rounded-[0.25rem] bg-neutral-100 text-neutral-950 font-normal placeholder:text-neutral-400 outline-none',
           helperText && 'border border-solid border-red-400 placeholder:text-red-600'
         )}
       />
@@ -44,7 +44,7 @@ export const TextArea = forwardRef<HTMLTextAreaElement, FormTextarea>(
         ref={ref}
         {...props}
         className={twMerge(
-          "w-full p-4 rounded-[0.25rem] bg-neutral-100 text-neutral-950 font-normal placeholder:text-neutral-400 h-[7.5rem] resize-none",
+          "w-full p-4 rounded-[0.25rem] bg-neutral-100 text-neutral-950 font-normal placeholder:text-neutral-400 h-[7.5rem] resize-none outline-none",
           helperText && 'border border-solid border-red-400 placeholder:text-red-600'
         )}
       />

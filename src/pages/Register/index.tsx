@@ -18,7 +18,7 @@ export const Register = () => {
   });
 
   return (
-    <Container classname="flex flex-1 items-center justify-center">
+    <Container classname="flex flex-1 items-center justify-center px-3">
       <Form className="w-[31.25rem]" onSubmit={handleSubmit(onRegister)}>
         <Form.Label>
           Nome
