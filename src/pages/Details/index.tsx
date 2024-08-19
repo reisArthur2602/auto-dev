@@ -95,6 +95,16 @@ export const Details = () => {
 
                             <div className="text-sm sm:text-base">
                                 <p className="text-neutral-400 font-semibold">
+                                    Quilometragem
+                                </p>
+                                <b className="text-neutral-950 font-extrabold ">
+                                    {car.km}
+                                </b>
+                            </div>
+
+
+                            <div className="text-sm sm:text-base">
+                                <p className="text-neutral-400 font-semibold">
                                     Ano
                                 </p>
                                 <b className="text-neutral-950 font-extrabold">
