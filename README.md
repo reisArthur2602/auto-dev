@@ -1,52 +1,66 @@
-<p align="center">
-  <img src="src/assets/banner-autodev.jpg" alt="Logo Auto Dev" />
-</p>
-
-<h1 align="center">AutoDev</h1>
+<h1 align="center" style="font-weight: bold;">Auto DEV 🚘</h1>
 
 <p align="center">
-  <b>Plataforma de venda de carros</b></br>
-  <sub>Quer comprar ou vender um carro sem sair de casa?<sub>
+ <a href="#tech">Tecnologias</a> • 
+ <a href="#started">Primeiros Passos</a> • 
+ 
 </p>
 
-[![-----------------------------------------------------](https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/colored.png)](#table-of-contents)
+<p align="center">
+    <b>Desenvolvimento de uma plataforma de compra e venda de carros</b>
+</p>
 
-## 🚀 Introdução
+<h2 id="layout">🎨 Layout</h2>
 
-**_Bem-vindo ao AutoDev! O AutoDev é uma plataforma de venda de carros, que permite ao usuário comprar ou vender um carro de forma prática e rápida._**
+<p align="center">
+    <img src="./public/screens/login.png" alt="Tela de login" width="600px">
+    <img src="./public/screens/home.png" alt="Tela principal" width="600px">
+    <img src="./public/screens/dashboard.png" alt="Tela de minha garagem" width="600px">
+    <img src="./public/screens/register-car.png" alt="Tela de registro de carro" width="600px">
+   
+</p>
 
-<br/>
+<h2 id="technologies">💻 Tecnologias</h2>
 
-## 🚀 Dependências
+- React
+- Firebase
+- TypeScript
+- TailwindCSS
 
-> Requisitos para rodar o projeto...
+<h2 id="started">🚀 Primeiros passos</h2>
 
-<br/>
+<h3>Pré-requisitos</h3>
 
-## `📖 Instalação`
+- [Node.js](https://nodejs.org)
+- [Git](https://git-scm.com/)
 
-<br />
+<h3>Clonando</h3>
 
-> Como iniciar
+```bash
+git clone https://github.com/reisArthur2602/auto-dev
+```
 
-1. Clone o repositório `git clone https://github.com/reisArthur2602/auto-dev`
-2. Instale as dependências `npm install`
-3. Rode o projeto `npm run dev`
+<h3>Configure as váriaveis .env </h2>
 
-<br />
+Use o`.env.example` como referência para criar seu arquivo de configuração `.env` com suas credenciais do Firebase
 
-## 🚀 Tecnologias
+```yaml
+VITE_FIREBASE_API_KEY=
+VITE_FIREBASE_AUTH_DOMAIN=
+VITE_FIREBASE_PROJECT_ID=
+VITE_FIREBASE_STORAGE_BUCKET=
+VITE_FIREBASE_MESSAGING_SENDER_ID=
+VITE_FIREBASE_APP_ID=
+```
 
-> Tecnologias utilizadas no projeto...
+<h3>Rodar o Projeto</h3>
 
-![React](https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB)
-![TypeScript](https://img.shields.io/badge/typescript-%23007ACC.svg?style=for-the-badge&logo=typescript&logoColor=white)
-![Firebase](https://img.shields.io/badge/firebase-a08021?style=for-the-badge&logo=firebase&logoColor=ffcd34)
-![TailwindCSS](https://img.shields.io/badge/tailwindcss-%2338B2AC.svg?style=for-the-badge&logo=tailwind-css&logoColor=white)
+```bash
+cd nome-do-projeto
+npm install
+npm run dev
+```
 
-## 🚀 Design
+<h3>Design</h3>
 
-> Design do projeto foi feito utilizando a ferramenta Figma.
-
-<a href="https://www.figma.com/design/gsgiOTa6c5QtJxmB6y6h15/Auto-Dev?node-id=0-1&t=vi8g39qyLx7JYzHA-1"> Link do Protótipo no Figma<a/>
-
+[🖊️ Protótipo no Figma](https://www.figma.com/design/gsgiOTa6c5QtJxmB6y6h15/Auto-Dev?node-id=0-1&t=3aC9NrTct9rsCxOc-1)
